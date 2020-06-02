@@ -15,18 +15,21 @@ public:
 
 	void loadPathFromFile(std::wstring _fileName);
 
-	std::vector<double> calculateP0Values();
-
+	void calculateDistances();
 
 private:
 
 	RouterNet& routerNet_;
 	
-	std::list<std::vector<double>> rssiData_;
+	std::list<std::vector<int>> rssiData_;
 
 	std::list<double>
 		xValues_,
 		yValues_;
+
+	std::list<std::vector<double>> distancesData_;
+
+	std::vector<double> calculateP0Values();
 
 };
 

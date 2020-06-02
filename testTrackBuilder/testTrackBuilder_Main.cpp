@@ -9,7 +9,7 @@ int main()
 	trackBuilder.loadRSSIFromFile(L"D:\\projects\\github\\IndoorPositioning\\UJI_BLE_DB\\data\\rss\\geo_rss.csv");
 	trackBuilder.loadPathFromFile(L"D:\\projects\\github\\IndoorPositioning\\UJI_BLE_DB\\data\\rss\\geo_crd.csv");
 
-	trackBuilder.calculateP0Values();
+	trackBuilder.calculateDistances();
 
 	return 0;
 }

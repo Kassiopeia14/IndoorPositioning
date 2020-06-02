@@ -4,7 +4,8 @@ trackBuilder::trackBuilder(RouterNet& _routerNet):
 	routerNet_(_routerNet),
 	rssiData_(),
 	xValues_(),
-	yValues_()
+	yValues_(),
+	distancesData_()
 {
 }
 
@@ -22,7 +23,7 @@ void trackBuilder::loadRSSIFromFile(std::wstring _fileName)
 	{
 		while (!file.eof())
 		{
-			std::vector<double> rssiLine(routerCount);
+			std::vector<int> rssiLine(routerCount);
 
 			for (int i = 0; i < routerCount; i++)
 			{				
@@ -68,7 +69,7 @@ void trackBuilder::loadPathFromFile(std::wstring _fileName)
 std::vector<double> trackBuilder::calculateP0Values()
 {
 	const size_t routerCount = routerNet_.getRouterCount();
-	//p0 = p + 20*lg(d)
+
 	std::vector<double> result(routerCount);
 	std::vector<int> rssiCounts(routerCount);
 
@@ -104,4 +105,22 @@ std::vector<double> trackBuilder::calculateP0Values()
 	}
 
 	return result;
+}
+
+void trackBuilder::calculateDistances()
+{
+	const size_t routerCount = routerNet_.getRouterCount();
+
+	std::vector<double> p0Values = calculateP0Values();
+
+	for (auto rssiItem = rssiData_.begin(); rssiItem != rssiData_.end(); rssiItem++)
+	{
+		std::vector<double> distancesLine(routerCount);
+		for (int i = 0; i < routerCount; i++)
+		{
+			const int rssi = (*rssiItem)[i];
+			distancesLine[i] = (rssi == 100 ? -1 : exp(log(10) * (p0Values[i] - rssi) / 20));
+		}
+		distancesData_.emplace_back(distancesLine);
+	}
 }
