@@ -11,6 +11,10 @@ Project("{8BC9CEB8-8B4A-11D0-8D11-00A0C91BC942}") = "modLeastSquares", "modLeast
 EndProject
 Project("{8BC9CEB8-8B4A-11D0-8D11-00A0C91BC942}") = "TestLeastSquares", "TestLeastSquares\TestLeastSquares.vcxproj", "{DE80C9DE-AB6E-4445-8EF2-F6BEFFC1D4E4}"
 EndProject
+Project("{8BC9CEB8-8B4A-11D0-8D11-00A0C91BC942}") = "modIndoorPositioning", "modIndoorPositioning\modIndoorPositioning.vcxproj", "{22E1DC68-35A4-4B83-8972-CBA14F609676}"
+EndProject
+Project("{8BC9CEB8-8B4A-11D0-8D11-00A0C91BC942}") = "TestRouterNet", "TestRouterNet\TestRouterNet.vcxproj", "{8274A8EF-B363-4AE7-A65F-532EB1279E81}"
+EndProject
 Global
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution
 		Debug|x64 = Debug|x64
@@ -51,6 +55,22 @@ Global
 		{DE80C9DE-AB6E-4445-8EF2-F6BEFFC1D4E4}.Release|x64.Build.0 = Release|x64
 		{DE80C9DE-AB6E-4445-8EF2-F6BEFFC1D4E4}.Release|x86.ActiveCfg = Release|Win32
 		{DE80C9DE-AB6E-4445-8EF2-F6BEFFC1D4E4}.Release|x86.Build.0 = Release|Win32
+		{22E1DC68-35A4-4B83-8972-CBA14F609676}.Debug|x64.ActiveCfg = Debug|x64
+		{22E1DC68-35A4-4B83-8972-CBA14F609676}.Debug|x64.Build.0 = Debug|x64
+		{22E1DC68-35A4-4B83-8972-CBA14F609676}.Debug|x86.ActiveCfg = Debug|Win32
+		{22E1DC68-35A4-4B83-8972-CBA14F609676}.Debug|x86.Build.0 = Debug|Win32
+		{22E1DC68-35A4-4B83-8972-CBA14F609676}.Release|x64.ActiveCfg = Release|x64
+		{22E1DC68-35A4-4B83-8972-CBA14F609676}.Release|x64.Build.0 = Release|x64
+		{22E1DC68-35A4-4B83-8972-CBA14F609676}.Release|x86.ActiveCfg = Release|Win32
+		{22E1DC68-35A4-4B83-8972-CBA14F609676}.Release|x86.Build.0 = Release|Win32
+		{8274A8EF-B363-4AE7-A65F-532EB1279E81}.Debug|x64.ActiveCfg = Debug|x64
+		{8274A8EF-B363-4AE7-A65F-532EB1279E81}.Debug|x64.Build.0 = Debug|x64
+		{8274A8EF-B363-4AE7-A65F-532EB1279E81}.Debug|x86.ActiveCfg = Debug|Win32
+		{8274A8EF-B363-4AE7-A65F-532EB1279E81}.Debug|x86.Build.0 = Debug|Win32
+		{8274A8EF-B363-4AE7-A65F-532EB1279E81}.Release|x64.ActiveCfg = Release|x64
+		{8274A8EF-B363-4AE7-A65F-532EB1279E81}.Release|x64.Build.0 = Release|x64
+		{8274A8EF-B363-4AE7-A65F-532EB1279E81}.Release|x86.ActiveCfg = Release|Win32
+		{8274A8EF-B363-4AE7-A65F-532EB1279E81}.Release|x86.Build.0 = Release|Win32
 	EndGlobalSection
 	GlobalSection(SolutionProperties) = preSolution
 		HideSolutionNode = FALSE
