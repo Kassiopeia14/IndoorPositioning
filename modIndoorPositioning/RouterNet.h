@@ -12,6 +12,8 @@ public:
 
 	void loadFromFile(std::wstring _fileName);
 
+	size_t getRouterCount() const;
+
 	std::vector<double> getXValues() const;
 	std::vector<double> getYValues() const;
 

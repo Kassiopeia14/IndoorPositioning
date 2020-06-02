@@ -34,9 +34,12 @@ void RouterNet::loadFromFile(std::wstring _fileName)
 			routerXValues_.emplace_back(x);
 			routerYValues_.emplace_back(y);
 		}		
-
-		size_t routerCount = routerXValues_.size();
 	}
+}
+
+size_t RouterNet::getRouterCount() const
+{
+	return routerXValues_.size();
 }
 
 std::vector<double> RouterNet::getXValues() const
@@ -48,3 +51,4 @@ std::vector<double> RouterNet::getYValues() const
 {
 	return std::vector<double>(routerYValues_.begin(), routerYValues_.end());
 }
+

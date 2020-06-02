@@ -20,8 +20,8 @@
   </ItemGroup>
   <PropertyGroup Label="Globals">
     <VCProjectVersion>16.0</VCProjectVersion>
-    <ProjectGuid>{22E1DC68-35A4-4B83-8972-CBA14F609676}</ProjectGuid>
-    <RootNamespace>modIndoorPositioning</RootNamespace>
+    <ProjectGuid>{530538B3-0EB0-4D60-B872-4ED4AB2DBFE8}</ProjectGuid>
+    <RootNamespace>testTrackBuilder</RootNamespace>
     <WindowsTargetPlatformVersion>10.0</WindowsTargetPlatformVersion>
   </PropertyGroup>
   <Import Project="$(VCTargetsPath)\Microsoft.Cpp.Default.props" />
@@ -39,7 +39,7 @@
     <CharacterSet>Unicode</CharacterSet>
   </PropertyGroup>
   <PropertyGroup Condition="'$(Configuration)|$(Platform)'=='Debug|x64'" Label="Configuration">
-    <ConfigurationType>StaticLibrary</ConfigurationType>
+    <ConfigurationType>Application</ConfigurationType>
     <UseDebugLibraries>true</UseDebugLibraries>
     <PlatformToolset>v142</PlatformToolset>
     <CharacterSet>Unicode</CharacterSet>
@@ -138,12 +138,12 @@
     </Link>
   </ItemDefinitionGroup>
   <ItemGroup>
-    <ClCompile Include="RouterNet.cpp" />
-    <ClCompile Include="trackBuilder.cpp" />
+    <ClCompile Include="testTrackBuilder_Main.cpp" />
   </ItemGroup>
   <ItemGroup>
-    <ClInclude Include="RouterNet.h" />
-    <ClInclude Include="trackBuilder.h" />
+    <ProjectReference Include="..\modIndoorPositioning\modIndoorPositioning.vcxproj">
+      <Project>{22e1dc68-35a4-4b83-8972-cba14f609676}</Project>
+    </ProjectReference>
   </ItemGroup>
   <Import Project="$(VCTargetsPath)\Microsoft.Cpp.targets" />
   <ImportGroup Label="ExtensionTargets">
