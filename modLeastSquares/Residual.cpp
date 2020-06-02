@@ -29,13 +29,25 @@ std::vector<double> Residual::operator ()(const double _x, const double _y)
 
 Matrix Residual::jacobiMatrix(const double _x, const double _y)
 {
-	Matrix result(transmittersCount_, 2);
+	Matrix result(2, transmittersCount_);
 
 	for (int i = 0; i < transmittersCount_; i++)
 	{
-		result(i, 0) = residualXDerivative(i, _x, _y);
-		result(i, 1) = residualYDerivative(i, _x, _y);
+		result(0, i) = residualXDerivative(i, _x, _y);
+		result(1, i) = residualYDerivative(i, _x, _y);
 	}
+	return result;
+}
+
+double Residual::targetFunction(const double _x, const double _y)
+{
+	double result = 0;
+
+	for (int i = 0; i < transmittersCount_; i++)
+	{
+		result += sqr(residual(i, _x, _y));
+	}
+
 	return result;
 }
 

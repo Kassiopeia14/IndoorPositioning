@@ -30,11 +30,11 @@ std::vector<double> GradientSolver::run(
 			x = point[0],
 			y = point[1];
 
-		std::vector<double> newPoint = point - _a * (transpond(residual_.jacobiMatrix(x, y)) * residual_(x, y));
+		std::vector<double> newPoint = point + (-_a) * (transpond(residual_.jacobiMatrix(x, y)) * residual_(x, y));
 
 		distance = sqrt(sqr(newPoint[0] - x) + sqr(newPoint[1] - y));
 
-		if (i % 1000 == 0)
+		if (i % 1 == 0)
 		{
 			std::cout << newPoint[0] << " " << newPoint[1] << " " << distance << std::endl;
 		}

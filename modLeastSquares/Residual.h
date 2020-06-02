@@ -18,6 +18,8 @@ public:
 
 	Matrix jacobiMatrix(const double _x, const double _y);
 
+	double targetFunction(const double _x, const double _y);
+
 private:
 
 	const size_t transmittersCount_;
@@ -31,6 +33,5 @@ private:
 	double residual(const size_t _index, const double _x, const double _y);
 	double residualXDerivative(const size_t _index, const double _x, const double _y);
 	double residualYDerivative(const size_t _index, const double _x, const double _y);
-	
 };
 

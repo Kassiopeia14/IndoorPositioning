@@ -16,36 +16,70 @@ std::vector<double> LevenbergMarquardtSolver::run(std::vector<double> _startPoin
 {
 	std::vector<double> point(_startPoint);
 
-	double distance = 8;
+	double 
+		distance = 8,
+		mu;
+		
 
 	std::cout << _startPoint[0] << " " << _startPoint[1] << " " << distance << std::endl;
 
 	size_t i = 0;
 
-	while (distance > 0.00000001)
-	{
+	bool begin = true;
+
+	Matrix I(2, 2);
+	I(0, 0) = 1; I(1, 0) = 0;
+	I(0, 1) = 0; I(1, 1) = 1;
+
+	while (distance > 0.00001)
+	{		
 		const double
 			x = point[0],
 			y = point[1];
 
-		Matrix
-			jM(residual_.jacobiMatrix(x, y)),
-			tM(transpond(jM)),
-			I(2 , 2);
+		bool ok = false;
 
-		std::vector<double> newPoint = point - inv * tM * residual_(x, y);
+		while(!ok)
+		{	
+			Matrix
+				jacobiMatrix = residual_.jacobiMatrix(x, y),
+				transpondJacobiMatrix = transpond(jacobiMatrix),
+				JTJ = transpondJacobiMatrix * jacobiMatrix;			
 
-		distance = sqrt(sqr(newPoint[0] - x) + sqr(newPoint[1] - y));
+			std::vector<double> grad = transpondJacobiMatrix * residual_(x, y);
+			
+			if (begin)
+			{
+				mu = 10 * maxElement(JTJ);
+				begin = false;
+			}				
 
-		if (i % 1 == 0)
-		{
-			std::cout << newPoint[0] << " " << newPoint[1] << " " << distance << std::endl;
+			Matrix
+				changedJTJ = JTJ + (mu * I),
+				inversedChangedJTJ = inverse(changedJTJ);
+
+			std::vector<double> newPoint = point + (-1) * (inversedChangedJTJ * grad);
+
+			distance = sqrt(sqr(newPoint[0] - x) + sqr(newPoint[1] - y));
+
+			std::cout << newPoint[0] << " " << newPoint[1] << " " << distance << " " << mu << std::endl;
+
+			ok = (residual_.targetFunction(newPoint[0], newPoint[1]) < residual_.targetFunction(x, y));
+
+			if (!ok)
+			{
+				mu *= 2;
+			}
+
+			point = newPoint;
 		}
-
-		point = newPoint;
-
+		
+		mu /= 2;
+		
 		i++;
 	}
+
+	std::cout << point[0] << " " << point[1] << " " << distance << std::endl;
 
 	return point;
 }

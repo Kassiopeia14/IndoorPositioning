@@ -22,18 +22,21 @@ std::vector<double> NewtonGaussSolver::run(std::vector<double> _startPoint)
 
 	size_t i = 0;
 
-	while (distance > 0.00000001)
+	while (distance > 0.00001)
 	{
 		const double
 			x = point[0],
 			y = point[1];
 
-		Matrix
-			jM(residual_.jacobiMatrix(x, y)),
-			tM(transpond(jM)),
-			inv(inverse(tM));
+		Matrix 
+			jacobiMatrix = residual_.jacobiMatrix(x, y),
+			transpondJacobiMatrix = transpond(jacobiMatrix),
+			JTJ = transpondJacobiMatrix * jacobiMatrix,
+			inverseJTJ = inverse(transpondJacobiMatrix * jacobiMatrix);
 
-		std::vector<double> newPoint = point - inv * tM * residual_(x, y);
+		std::vector<double> grad = transpondJacobiMatrix * residual_(x, y);
+
+		std::vector<double> newPoint = point + (-1) * (inverseJTJ * grad);
 
 		distance = sqrt(sqr(newPoint[0] - x) + sqr(newPoint[1] - y));
 
@@ -46,6 +49,8 @@ std::vector<double> NewtonGaussSolver::run(std::vector<double> _startPoint)
 
 		i++;
 	}
+
+	std::cout << point[0] << " " << point[1] << " " << distance << std::endl;
 
 	return point;
 }

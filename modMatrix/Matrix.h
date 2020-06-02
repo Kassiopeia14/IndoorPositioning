@@ -39,11 +39,11 @@ Matrix operator+ (Matrix _first, Matrix _second);
 
 Matrix operator* (Matrix _first, Matrix _second);
 std::vector<double> operator* (Matrix _first, std::vector<double> _second);
-Matrix operator* (Matrix _first, const double _second);
+Matrix operator* (const double _first, Matrix _second);
 
-std::vector<double> operator+ (std::vector<double> _first, std::vector<double> _second);
-std::vector<double> operator- (std::vector<double> _first, std::vector<double> _second);
+std::vector<double> operator+(std::vector<double> _first, std::vector<double> _second);
 std::vector<double> operator* (double _first, std::vector<double> _second);
 
 Matrix inverse(Matrix _original);
 Matrix transpond(Matrix _original);
+double maxElement(Matrix _original);

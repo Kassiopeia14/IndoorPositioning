@@ -51,7 +51,7 @@ void testConstMultiplication()
 	A(0, 0) = 1; A(1, 0) = 2; A(2, 0) = 3;
 	A(0, 1) = 4; A(1, 1) = 5; A(2, 1) = 6;
 	
-	Matrix B = A * 7;
+	Matrix B = 7 * A;
 
 	B.print();
 }

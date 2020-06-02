@@ -112,18 +112,18 @@ std::vector<double> operator* (Matrix _first, std::vector<double> _second)
 	return result;
 }
 
-Matrix operator* (Matrix _first, const double _second)
+Matrix operator* (const double _first, Matrix _second)
 {
 	const int
-		rowCount = (const int)_first.getRowCount(),
-		columnCount = (const int)_first.getColumnCount();
+		rowCount = (const int)_second.getRowCount(),
+		columnCount = (const int)_second.getColumnCount();
 
 	Matrix result(columnCount, rowCount);
 
 	for (int i = 0; i < columnCount; i++)
 		for (int j = 0; j < rowCount; j++)
 		{
-			result(i, j) = _first(i, j) * _second;
+			result(i, j) = _second(i, j) * _first;
 		}
 	
 	return result;
@@ -136,18 +136,6 @@ std::vector<double> operator+(std::vector<double> _first, std::vector<double> _s
 	for (int i = 0; i < _first.size(); i++)
 	{
 		result[i] = _first[i] + _second[i];
-	}
-
-	return result;
-}
-
-std::vector<double> operator-(std::vector<double> _first, std::vector<double> _second)
-{
-	std::vector<double> result(_first.size());
-
-	for (int i = 0; i < _first.size(); i++)
-	{
-		result[i] = _first[i] - _second[i];
 	}
 
 	return result;
@@ -191,4 +179,22 @@ Matrix transpond(Matrix _original)
 
 	return result;
 
+}
+
+double maxElement(Matrix _original)
+{
+	const int
+		columnCount = (const int)_original.getColumnCount(),
+		rowCount = (const int)_original.getRowCount();
+
+	double result = _original(0, 0);
+
+	for (int i = 0; i < columnCount; i++)
+		for (int j = 0; j < rowCount; j++)
+		{
+			if (result < _original(i, j))
+				result = _original(i, j);
+		}
+
+	return result;
 }
