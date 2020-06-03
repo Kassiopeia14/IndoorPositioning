@@ -170,6 +170,9 @@ void trackBuilder::calculateDistances()
 
 void trackBuilder::buildTrack()
 {
+	resultXValues_.clear();
+	resultYValues_.clear();
+
 	const size_t routerCount = routerNet_.getRouterCount();
 
 	std::vector<double>
@@ -254,7 +257,7 @@ void trackBuilder::getTrackingData(TrackingData* _trackingData)
 		_trackingData->transmitterY[i] = routerYValues[i];
 	}
 
-	_trackingData->pointCount = xValues_.size();
+	_trackingData->pointCount = resultXValues_.size();
 
 	std::vector<double>
 		xValues(resultXValues_.begin(), resultXValues_.end()),
@@ -262,7 +265,7 @@ void trackBuilder::getTrackingData(TrackingData* _trackingData)
 
 	_trackingData->pointX = new double[xValues.size()];
 	_trackingData->pointY = new double[xValues.size()];
-	for (int i = 0; i < routerXValues.size(); i++)
+	for (int i = 0; i < xValues.size(); i++)
 	{
 		_trackingData->pointX[i] = xValues[i];
 		_trackingData->pointY[i] = yValues[i];

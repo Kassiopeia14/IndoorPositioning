@@ -14,6 +14,12 @@ void main()
 	{
 		ImportPythonDataMethod importPythonDataMethod = (ImportPythonDataMethod)GetProcAddress(hModule, "importPythonData");
 		TrackingData* trackingData = (*importPythonDataMethod)();
+
+		for (int i = 0; i < 24; i++)
+		{
+			std::cout << trackingData->pointX[i] << std::endl;
+		}
+
 		::FreeLibrary(hModule);
 	}
 	else cout << "error load Dll" << endl;

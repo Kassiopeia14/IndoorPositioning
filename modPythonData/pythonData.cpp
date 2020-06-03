@@ -1,14 +1,17 @@
 #include "pythonData.h"
 
-RouterNet routerNet;
 
-trackBuilder tb(routerNet);
 
-TrackingData trackingData;
+TrackingData *trackingData;
 
 TrackingData * importPythonData()
 {
-	
+	trackingData = new TrackingData();
+
+
+	RouterNet routerNet;
+
+	trackBuilder tb(routerNet);
 	routerNet.loadFromFile(L"D:\\projects\\github\\IndoorPositioning\\UJI_BLE_DB\\data\\dep\\geo.csv");
 
 	
@@ -19,7 +22,7 @@ TrackingData * importPythonData()
 
 	tb.buildTrack();
 
-	tb.getTrackingData(&trackingData);
+	tb.getTrackingData(trackingData);
 
-	return &trackingData;
+	return trackingData;
 }
