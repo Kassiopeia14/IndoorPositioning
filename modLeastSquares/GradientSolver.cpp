@@ -20,11 +20,11 @@ std::vector<double> GradientSolver::run(
 
 	double distance = 8;
 
-	std::cout << _startPoint[0] << " " << _startPoint[1] << " " << distance << std::endl;
+	//std::cout << _startPoint[0] << " " << _startPoint[1] << " " << distance << std::endl;
 
 	size_t i = 0;
 
-	while (distance > 0.00000001)
+	while ((distance > 0.00000001) && (i < 100))
 	{
 		const double
 			x = point[0],
@@ -36,13 +36,16 @@ std::vector<double> GradientSolver::run(
 
 		if (i % 1 == 0)
 		{
-			std::cout << newPoint[0] << " " << newPoint[1] << " " << distance << std::endl;
+			//std::cout << newPoint[0] << " " << newPoint[1] << " " << distance << std::endl;
 		}
 		
 		point = newPoint;
 
 		i++;
 	}
+
+	//std::cout << std::endl;
+	std::cout << "i: " << i << std::endl;
 
 	return point;
 }

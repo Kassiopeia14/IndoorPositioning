@@ -11,5 +11,7 @@ int main()
 
 	trackBuilder.calculateDistances();
 
+	trackBuilder.buildTrack();
+
 	return 0;
 }

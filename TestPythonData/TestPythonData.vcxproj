@@ -20,8 +20,8 @@
   </ItemGroup>
   <PropertyGroup Label="Globals">
     <VCProjectVersion>16.0</VCProjectVersion>
-    <ProjectGuid>{530538B3-0EB0-4D60-B872-4ED4AB2DBFE8}</ProjectGuid>
-    <RootNamespace>testTrackBuilder</RootNamespace>
+    <ProjectGuid>{FB6043C8-33A4-4C0B-B2C2-F2F66525D86D}</ProjectGuid>
+    <RootNamespace>TestPythonData</RootNamespace>
     <WindowsTargetPlatformVersion>10.0</WindowsTargetPlatformVersion>
   </PropertyGroup>
   <Import Project="$(VCTargetsPath)\Microsoft.Cpp.Default.props" />
@@ -138,18 +138,7 @@
     </Link>
   </ItemDefinitionGroup>
   <ItemGroup>
-    <ClCompile Include="testTrackBuilder_Main.cpp" />
-  </ItemGroup>
-  <ItemGroup>
-    <ProjectReference Include="..\modIndoorPositioning\modIndoorPositioning.vcxproj">
-      <Project>{22e1dc68-35a4-4b83-8972-cba14f609676}</Project>
-    </ProjectReference>
-    <ProjectReference Include="..\modLeastSquares\modLeastSquares.vcxproj">
-      <Project>{79d89969-22c6-4142-bb5f-91f8f341de40}</Project>
-    </ProjectReference>
-    <ProjectReference Include="..\modMatrix\modMatrix.vcxproj">
-      <Project>{d255cc57-1f9c-4a22-a704-197843dcbc4f}</Project>
-    </ProjectReference>
+    <ClCompile Include="testPythonData.cpp" />
   </ItemGroup>
   <Import Project="$(VCTargetsPath)\Microsoft.Cpp.targets" />
   <ImportGroup Label="ExtensionTargets">

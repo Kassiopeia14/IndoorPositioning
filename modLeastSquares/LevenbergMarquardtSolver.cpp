@@ -21,7 +21,7 @@ std::vector<double> LevenbergMarquardtSolver::run(std::vector<double> _startPoin
 		mu;
 		
 
-	std::cout << _startPoint[0] << " " << _startPoint[1] << " " << distance << std::endl;
+	//std::cout << _startPoint[0] << " " << _startPoint[1] << " " << distance << std::endl;
 
 	size_t i = 0;
 
@@ -31,28 +31,28 @@ std::vector<double> LevenbergMarquardtSolver::run(std::vector<double> _startPoin
 	I(0, 0) = 1; I(1, 0) = 0;
 	I(0, 1) = 0; I(1, 1) = 1;
 
-	while (distance > 0.00001)
-	{		
+	while ((distance > 0.00001) && (i < 100))
+	{
 		const double
 			x = point[0],
 			y = point[1];
 
 		bool ok = false;
 
-		while(!ok)
-		{	
+		while (!ok)
+		{
 			Matrix
 				jacobiMatrix = residual_.jacobiMatrix(x, y),
 				transpondJacobiMatrix = transpond(jacobiMatrix),
-				JTJ = transpondJacobiMatrix * jacobiMatrix;			
+				JTJ = transpondJacobiMatrix * jacobiMatrix;
 
 			std::vector<double> grad = transpondJacobiMatrix * residual_(x, y);
-			
+
 			if (begin)
 			{
 				mu = 10 * maxElement(JTJ);
 				begin = false;
-			}				
+			}
 
 			Matrix
 				changedJTJ = JTJ + (mu * I),
@@ -62,13 +62,20 @@ std::vector<double> LevenbergMarquardtSolver::run(std::vector<double> _startPoin
 
 			distance = sqrt(sqr(newPoint[0] - x) + sqr(newPoint[1] - y));
 
-			std::cout << newPoint[0] << " " << newPoint[1] << " " << distance << " " << mu << std::endl;
+			//std::cout << newPoint[0] << " " << newPoint[1] << " " << distance << " " << mu << std::endl;
 
 			ok = (residual_.targetFunction(newPoint[0], newPoint[1]) < residual_.targetFunction(x, y));
 
 			if (!ok)
 			{
 				mu *= 2;
+				if (mu > 1024 * 1024)
+				{
+					ok = true;
+					newPoint[0] = -1;
+					newPoint[1] = -1;
+					i = 101;
+				}
 			}
 
 			point = newPoint;
@@ -79,7 +86,8 @@ std::vector<double> LevenbergMarquardtSolver::run(std::vector<double> _startPoin
 		i++;
 	}
 
-	std::cout << point[0] << " " << point[1] << " " << distance << std::endl;
+	//std::cout << point[0] << " " << point[1] << " " << distance << std::endl;
+	//std::cout << std::endl;
 
 	return point;
 }
