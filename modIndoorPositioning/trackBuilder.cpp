@@ -186,7 +186,7 @@ void trackBuilder::buildTrack()
 	int n = 0,
 		success = 0;
 
-	for (auto distancesItem = distancesData_.begin(); distancesItem != distancesData_.end(); distancesItem++)
+	for (auto distancesItem = realDistancesData_.begin(); distancesItem != realDistancesData_.end(); distancesItem++)
 	{
 		std::list<double> transmittersXList;
 		std::list<double> transmittersYList;
@@ -199,7 +199,7 @@ void trackBuilder::buildTrack()
 			{
 				transmittersXList.push_back(routerXValues[i]);
 				transmittersYList.push_back(routerYValues[i]);
-				distanceValuesList.push_back(distance); //* ( 1.0 + 0.001 * (rand() % 1000)));
+				distanceValuesList.push_back(distance * ( 1.0 + 0.001 * (rand() % 500)));
 			}
 		}
 		std::vector<double> transmittersX(transmittersXList.begin(), transmittersXList.end());
